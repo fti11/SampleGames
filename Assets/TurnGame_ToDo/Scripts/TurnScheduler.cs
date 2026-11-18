@@ -15,21 +15,7 @@ namespace TurnGame.Student
             // TODO 04: 시간이 같으면 Speed가 큰 유닛을 먼저 선택하세요.
             // 미완성 상태에서는 첫 번째 생존 유닛을 선택합니다.
             for (int i = 0; i < units.Count; i++)
-            {
-                if (!units[i].IsAlive)
-                {
-                    continue;
-                }
-                if (best < 0 || units[i].NextActionTime < units[best].NextActionTime)
-                {
-                    best = i;
-                }
-                else if (Mathf.Approximately(units[i].NextActionTime, units[best].NextActionTime) && units[i].Speed > units[best].Speed)
-                {
-                    best = i;
-                }
-            }
-               
+                if (units[i].IsAlive) return i;
             return best;
         }
 
@@ -38,9 +24,7 @@ namespace TurnGame.Student
             // TODO 05: 실제 속도 = speed + speedBonus를 계산하세요.
             // TODO 06: 실제 속도를 최소 1로 제한하세요.
             // TODO 07: 100 / 실제 속도를 반환하세요.
-
-            int effectiveSpeed = Mathf.Max(1, speed + speedBonus);
-            return 100f / effectiveSpeed;
+            return 10f;
         }
     }
 }
